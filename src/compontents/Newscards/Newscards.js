@@ -5,7 +5,6 @@ import useStyles from "./styles.js"
 
 import Grid from "@mui/material/Grid";
 import Grow from "@mui/material/Grow";
-import Typography from '@mui/material/Typography';
 
 
 const Newscards = ({ articles }) => {
