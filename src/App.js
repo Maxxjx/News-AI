@@ -1,29 +1,33 @@
-import './App.css';
+import React, { useEffect, useState } from "react";
+import alanBtn from "@alan-ai/alan-sdk-web";
 
-function App() {
+import Newscards from "./compontents/Newscards/Newscards";
+
+const alankey = "4bfb4282fea544a2497aa27089f9a6bb2e956eca572e1d8b807a3e2338fdd0dc/stage";
+
+const App = () => {
+
+  const [newsArticles,setNewsArticles]= useState([])
+
+  useEffect(() => {
+    alanBtn({
+      key: alankey,
+      onCommand: ({ command , articles}) => {
+        if(command === 'newHeadlines' ) {
+          console.log(articles)
+           setNewsArticles(articles);
+           
+        }
+      }
+    })
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src="Octocat.png" className="App-logo" alt="logo" />
-        <p>
-          GitHub Codespaces <span className="heart">♥️</span> React
-        </p>
-        <p className="small">
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </p>
-      </header>
+
+    <div>
+      <h1>Maxx-Time AI-News App</h1>
+       <Newscards articles={newsArticles}/> 
     </div>
   );
-}
-
+};
 export default App;
